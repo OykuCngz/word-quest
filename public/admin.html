@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WordQuest – Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+
+ 
+    <header class="main-header">
+      <div class="brand">
+        <div class="brand-icon"></div>
+        <span class="brand-name">Word Quest – Admin</span>
+      </div>
+
+      <div class="host-header-actions">
+        <div id="room-code-pill" class="room-code-pill room-code-pill--hidden">
+          Room Code: <span id="room-code-display">----</span>
+        </div>
+        <button id="create-room-btn" class="btn btn-ghost">Create Room</button>
+      </div>
+    </header>
+
+   
+    <div class="host-layout">
+
+    
+      <section class="card host-main-card">
+        <div class="host-main-header">
+          <div>
+            <h2 class="host-title">Current Question</h2>
+            <p class="host-subtitle" id="host-question-info">Waiting for room...</p>
+          </div>
+
+          <button id="next-question-btn" class="btn btn-primary" disabled>
+            Start / Next Question
+          </button>
+        </div>
+
+        <p id="host-masked-word" class="big-word">_ _ _</p>
+
+        <p id="host-hint" class="host-hint">
+          Create a room to start the game.
+        </p>
+
+       
+        <div class="timer-wrapper">
+          <div class="timer-header">
+            <span class="timer-label">Time Bonus</span>
+            <span id="timer-seconds" class="timer-seconds">-- s</span>
+          </div>
+          <div class="timer-bar">
+            <div id="timer-bar-fill" class="timer-bar-fill"></div>
+          </div>
+        </div>
+      </section>
+
+   
+      <aside class="card host-side-card">
+        <h3 class="host-scoreboard-title">Scoreboard</h3>
+        <p class="host-scoreboard-hint" id="scoreboard-hint">
+          Waiting for players to join...
+        </p>
+        <ul id="scoreboard-list" class="scoreboard-list"></ul>
+      </aside>
+
+    </div>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="host.js"></script>
+  <script>
+  const ADMIN_STORAGE_KEY = "wordquest_admin_auth";
+  if (localStorage.getItem(ADMIN_STORAGE_KEY) !== "yes") {
+    // Login olmamışsa admin sayfasını gösterme
+    window.location.href = "/admin-login.html";
+  }
+</script>
+
+</body>
+</html>

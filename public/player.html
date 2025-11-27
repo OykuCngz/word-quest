@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WordQuest Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="app">
+  
+  <section id="welcome-screen" class="screen screen--active">
+    <header class="main-header">
+      <div class="brand">
+        <div class="brand-icon"></div>
+        <span class="brand-name">Word Quest</span>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">How to Play</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <div class="hero-image">
+        <div class="hero-wave hero-wave-1"></div>
+        <div class="hero-wave hero-wave-2"></div>
+        <div class="hero-wave hero-wave-3"></div>
+      </div>
+
+      <div class="hero-content">
+        <h1>Welcome to Word Quest</h1>
+        <p class="hero-text">
+          Improve your English, one word at a time. Join the live Word Quest
+          game with your classmates and play together.
+        </p>
+
+    
+        <button id="go-join" class="btn btn-primary hero-button">
+          Join Live Game
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="join-screen" class="screen">
+    <header class="main-header">
+      <div class="brand">
+        <div class="brand-icon"></div>
+        <span class="brand-name">Word Quest</span>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">How to Play</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <div class="hero-image">
+        <div class="hero-wave hero-wave-1"></div>
+        <div class="hero-wave hero-wave-2"></div>
+        <div class="hero-wave hero-wave-3"></div>
+      </div>
+
+      <div class="hero-content">
+        <h1>Join Game</h1>
+        <p class="hero-text">
+          Enter the room code given by your teacher and type your name
+          to join the live game.
+        </p>
+
+        <form id="join-form" class="join-form" autocomplete="off">
+          <div class="join-row">
+            <div class="join-field">
+              <label for="room-code-input" class="join-label">Room Code</label>
+              <input
+                id="room-code-input"
+                class="join-input"
+                type="text"
+                placeholder=""
+                required
+              />
+            </div>
+
+            <div class="join-field">
+              <label for="player-name-input" class="join-label">Your Name</label>
+              <input
+                id="player-name-input"
+                class="join-input"
+                type="text"
+                placeholder=""
+                required
+              />
+            </div>
+          </div>
+
+          <button id="join-btn" type="submit" class="btn btn-primary hero-button">
+            Join Game
+          </button>
+          <div id="join-status" class="feedback-pill"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+    
+    <section id="game-screen" class="screen">
+
+      <header class="game-header-main">
+        <div class="game-logo-icon"></div>
+        <span class="game-logo-text">WordGuesser</span>
+      </header>
+
+      <div class="game-divider"></div>
+
+      <div class="game-stats-row">
+        <div class="stat-card">
+          <span class="stat-label">Question</span>
+          <span class="stat-value" id="player-question-number">1 / 10</span>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">Lives Remaining</span>
+          <div class="lives-display">
+            <span id="player-lives-hearts" class="lives-hearts"></span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">Score</span>
+          <span class="stat-value" id="player-score">0</span>
+        </div>
+      </div>
+
+      <div class="game-main-card">
+        <p id="player-masked-word" class="big-word">_ _ _ _ _</p>
+
+        <div class="hint-box">
+          <span class="hint-label">💡 Hint:</span>
+          <span id="player-hint" class="hint-text">...</span>
+        </div>
+
+        <div id="answer-status" class="feedback-pill"></div>
+
+        <div class="guess-row">
+          <input id="answer-input" type="text" autocomplete="off" placeholder="Enter a letter or word" />
+          <button id="answer-btn" class="btn btn-primary guess-btn">
+            Guess <span class="guess-arrow">➤</span>
+          </button>
+        </div>
+
+        <div class="status">
+          <span id="lives-status"></span>
+          <span id="score-status"></span>
+        </div>
+        <div id="out-overlay" class="out-overlay">
+        <div id="out-popup" class="out-overlay-inner">
+        <h3>You're out of lives 💔</h3>
+        <p>
+          You used all 3 hearts.  
+          Please wait and watch your friends until the game finishes.
+       </p>
+       </div>
+       </div>
+
+      </div>
+
+      <div class="used-letters-card">
+        <p class="used-letters-title">Used Letters</p>
+        <div id="used-letters" class="used-letters-list"></div>
+      </div>
+
+    </section>
+
+
+    <section id="results-page" class="screen">
+      <div class="card card--results">
+        <h2 id="results-title">Great Effort!</h2>
+
+        <p class="results-score">
+          Your Score: <span id="final-score">0</span>
+        </p>
+
+        <div class="results-top-row">
+          <div class="results-score-card">
+            <span class="results-label">Your Score</span>
+            <span id="final-score-big" class="results-score-value">0</span>
+          </div>
+
+          <div class="results-words-card">
+            <div class="results-words-header">
+              <span class="results-label">Words Correct</span>
+              <span id="words-correct-text" class="results-words-count">0/10</span>
+            </div>
+
+            <div class="results-progress">
+              <div id="words-progress-fill" class="results-progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-lists-row">
+          <div class="results-column">
+            <h3>Leaderboard</h3>
+            <ul id="results-list"></ul>
+          </div>
+
+          <div class="results-column">
+            <h3>Your Result</h3>
+            <ul>
+              <li id="final-rank">Rank: -</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="results-actions">
+          <button id="play-again-btn" class="btn btn-primary">Play Again</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="player.js"></script>
+</body>
+</html>
